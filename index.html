@@ -1,6 +1,6 @@
 ---
 layout: default
-title: "Andtorg's home"
+title: "almost geek"
 ---
 
 <div>
@@ -9,7 +9,8 @@ title: "Andtorg's home"
     {% for post in site.posts %}
     	<h4><strong><a href="{{ post.url }}">{{ post.title }}</a></strong></h4> 
     	        <p>
-          {{ post.description }}
+          <!-- {{ post.description }} -->
+          {{ post.content}}
         </p>
         <hr>
 		<!-- {% assign page = post %}
