@@ -2,7 +2,7 @@
 layout: post
 title: "Remove prefix from filenames"
 description: ""
-category: "fast recipes"
+category: "fast-recipes"
 tags: [bash, linux]
 ---
 {% include JB/setup %}
