@@ -5,3 +5,9 @@ description: ""
 group: "navigation"
 ---
 {% include JB/setup %}
+
+{% assign category = site.categories.fast-recipes %}
+  <ul>
+    	{% assign pages_list = category %}  
+    	{% include JB/pages_list %}
+  </ul>
