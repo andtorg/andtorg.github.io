@@ -2,8 +2,8 @@
 layout: post
 title: "Setting ssh security keys"
 description: ""
-category: "Ubuntu"
-tags: [linux, ssh]
+category: "fast recipes"
+tags: [linux, ssh, ubuntu]
 ---
 {% include JB/setup %}
 

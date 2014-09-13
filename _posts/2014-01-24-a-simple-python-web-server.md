@@ -2,8 +2,8 @@
 layout: post
 title: "A simple python web server"
 description: ""
-category: "Ubuntu"
-tags: [linux, python]
+category: "fast recipes"
+tags: [linux, python, ubuntu]
 ---
 {% include JB/setup %}
 
