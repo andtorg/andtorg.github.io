@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "A simple python web server"
-description: ""
+description: "for fast development environment setting"
 category: "fast-recipes"
 tags: [linux, python, ubuntu]
 ---

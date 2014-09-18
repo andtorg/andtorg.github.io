@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Remove prefix from filenames"
-description: ""
+description: "a little bash for loop"
 category: "fast-recipes"
 tags: [bash, linux]
 ---

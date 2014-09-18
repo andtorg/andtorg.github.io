@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Setting ssh security keys"
-description: ""
+description: "avoid password authentication using ssh agent"
 category: "fast-recipes"
 tags: [linux, ssh, ubuntu]
 ---
