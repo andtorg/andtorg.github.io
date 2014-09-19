@@ -1,0 +1,13 @@
+---
+layout: page
+title: "et coetera"
+description: "other things I like talking about"
+group: "navigation"
+---
+{% include JB/setup %}
+
+{% assign category = site.categories.et-coetera %}
+  <ul>
+    	{% assign pages_list = category %}  
+    	{% include JB/pages_list %}
+  </ul>
