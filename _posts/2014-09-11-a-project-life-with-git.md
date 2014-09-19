@@ -2,7 +2,7 @@
 layout: post
 title: "A project life with Git"
 description: ""
-category: "General"
+category: "et-coetera"
 tags: [git]
 ---
 {% include JB/setup %}
