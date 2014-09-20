@@ -23,7 +23,8 @@ Don't worry about committing frequently. Git is very smart at use resources save
 
 Up to a point, metadata and comments can comfortably live along with your codebase but out of it. This reduces the _comment pollution_ in your file. Did you ever come across files with 10 lines of comments and 4 lines of code? Awful, but not so uncommon. Don't put history in code comments. Use messages (and write cleaner self-explaining code, but this is a whole other subject). 
 
-#### Always attach commits to issues 
+#### Always attach commits to issues
+For this you need an issue tracking system. Both [Github](https://github.com/) and [Bitbucket](https://bitbucket.org/) have a not-so-minimal free platform that allows you to open issues and attach code changes via smart commit messages, i.e. referencing issues with special symbol or syntax. I found this is a very good way to save additional information about your development progress. An entire discussion among several developers can be stored alongside the code under modification, without resort to external systems that would be very hard to check later (think about emails). 
 
 
 #### Stash and push to remote branches
