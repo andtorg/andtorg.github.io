@@ -1,0 +1,14 @@
+---
+layout: page
+title: "me"
+description: ""
+group: "navigation"
+---
+{% include JB/setup %}
+
+{% assign category = site.categories.me %}
+
+  <ul>
+    	{% assign pages_list = category %}  
+    	{% include JB/pages_list %}
+  </ul>
