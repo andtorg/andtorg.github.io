@@ -74,7 +74,10 @@
   background-color: green
 }
 
-
+.code_trust_container{
+  float:right;
+  font-size: 0.8em
+}
 
 .category-description {
   color: #929292;
