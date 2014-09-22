@@ -14,6 +14,7 @@ Tons of stuff are available to learn git, so I won't dive into commands. I will 
 Here I just want to share a few high-level thoughts. 
 
 <br>
+
 #### Never commit against master
 The *Master* branch is the main development line. Each developer must have a chance to start contributing from a _relatively_ clean code base. So, it should be populated only by tested piece of new/updated code. Whenever a fix occurred or a new functionality has to be addressed, first thing is to create a new branch. All the commits goes into this branch.
 
