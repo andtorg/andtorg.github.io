@@ -2,7 +2,7 @@
 layout: post
 title: "Breakfast with Git"
 description: "a few notes about using git the right way (in my opinion)"
-category: "l-u-e"
+category: "lue"
 tags: [git]
 ---
 {% include JB/setup %}
