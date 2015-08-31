@@ -45,15 +45,30 @@ All this ideas and projects converge to a same point: transformation test requir
 
 I followed this approach, too. 
 
-## What is in a test
+## What is in a test?
 Whatever the thing to test or the used framework, writing a test always involved a setup of some fixtures, test execution, cleaning up. In other words you put the system
 in a known state, execute the code, get the result (success or failure), clean up (tear down) the state. Pdi provides the user with all the tools
 needed to write a job that acts as a test runner. From a functional point of view, you will have five kinds of entries: 
  * entries to create the storage medium needed: either database tables or files
- * entries to populate the storage: here you upload bothe the input data and the golden data
+ * entries to populate the storage: here you upload both the input data and the golden data
  * the transformation to be tested
  * transformations that compare golden and output data
  * entries to clean temp files or tables
+
+I will try and touch all these points going depper here and there to show how useful pdi can be.
+
+## Tables and connections
+In a typical scenario you have two kinds of tables: source and target. The problem lays on the fact that you normally don't develop etl in a production-like environment.
+So you won't probably have a source and a target database exactly equal to what your solution will deal with in prod. You may think that there is no need to stretch the tests
+up to this point. For instance, using the concept of **result** as in [copy-rows-to-result step](http://wiki.pentaho.com/display/EAI/Copy+rows+to+result),
+you can pass rows from a trans to another. So, you can avoid write a test to fire queries to a db and only check what happens in the middle: in fact you would test only the **T** 
+in ETL.
+
+In my opinion, however, testing queries can be valuable to better understand what you want, as often happens in a test-driven-development (tdd) approach. Furthermore it forces
+you to put sql script under version control and keep them in sync with test code.
+
+But how you can reproduce a source database? The answer is **simple-jndi**. 
+
 
 ## Notes (to be deleted)
 Esempio di carico immagini: ![My fair logo]({{ site.url }}/assets/images/andtorg.png)
