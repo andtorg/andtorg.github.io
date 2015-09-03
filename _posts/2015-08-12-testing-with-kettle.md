@@ -15,11 +15,11 @@ Nonetheless, after roll-out I have endured a fair amount of bug fixing. Most of 
 
 Furthermore, starting the development of a second main release, I realized very soon that code breaking was all too likely. I decided then to introduce some automation
 at transformation level using kind of tdd approach with this key points in mind: 
- * Build a robust set of automated tests executable during building phase 
- * Tests should be executed both in an isolated fashion and as suite
- * A report should be generated summing up the total number of tests, showing which one failed, like junit usually does
- * The failure of a single test should not block the following tests. It should prevent building, though.
- * Tests must be part of a maven building cycle, being this the tool of choice to support the development of this application
+* Build a robust set of automated tests executable during building phase 
+* Tests should be executed both in an isolated fashion and as suite
+* A report should be generated summing up the total number of tests, showing which one failed, like junit usually does
+* The failure of a single test should not block the following tests. It should prevent building, though.
+* Tests must be part of a maven building cycle, being this the tool of choice to support the development of this application
  
 As a side note, Intellij IDEA is the companion IDE for this software: transformations and jobs are designed with Spoon, the pdi gui. All the rest is managed by the IDE.
 
