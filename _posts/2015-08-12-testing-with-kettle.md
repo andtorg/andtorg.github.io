@@ -57,11 +57,12 @@ I followed this approach, too.
 Whatever the thing to test or the used framework, writing a test always involved a setup of some fixtures, test execution, cleaning up. In other words you put the system
 in a known state, execute the code, get the result (success or failure), clean up (tear down) the state. Pdi provides the user with all the tools
 needed to write a job that acts as a test runner. From a functional point of view, you will have five kinds of entries: 
- * entries to create the storage medium needed: either database tables or files
- * entries to populate the storage: here you upload both the input data and the golden data
- * the transformation to be tested
- * transformations that compare golden and output data
- * entries to clean temp files or tables
+
+* entries to create the storage medium needed: either database tables or files
+* entries to populate the storage: here you upload both the input data and the golden data
+* the transformation to be tested
+* transformations that compare golden and output data
+* entries to clean temp files or tables
 
 An example of runner can be:
 ![job test runner]({{ site.url }}/assets/images/job_test_runner.png)
