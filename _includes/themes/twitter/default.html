@@ -23,6 +23,13 @@
 
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
+    <!--This is for custom css in each page-->
+    {% if page.custom_css %}
+      {% for stylesheet in page.custom_css %}
+        <link rel="stylesheet" href="{{ BASE_PATH }}/assets/d3-posts/{{ stylesheet }}.css" media="screen" type="text/css">
+      {% endfor %}
+    {% endif %}
+
     <!-- Le fav and touch icons -->
   <!-- Update these with your own images
     <link rel="shortcut icon" href="images/favicon.ico">
@@ -58,6 +65,13 @@
       <div class="content">
         {{ content }}
       </div>
+
+      <!--This is for custom javascript files in each page-->
+      {% if page.custom_js %}
+        {% for js_file in page.custom_js %}
+          <script src='{{ BASE_PATH }}/assets/d3-posts/{{ js_file }}.js' type="text/javascript"></script>
+        {% endfor %}
+      {% endif %}
       <hr>
       <footer>
         <p>&copy; {{ site.time | date: '%Y' }} {{ site.author.name }}
