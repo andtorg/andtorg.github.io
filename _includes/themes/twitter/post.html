@@ -7,10 +7,10 @@
     <div class="date">
       <span>{{ page.date | date_to_long_string }}</span>
     </div>
+    <div class="d3-container"></div>
     <div class="content">
       {{ content }}
     </div>
-    <svg class="d3-container"></svg>
 
   {% unless page.categories == empty %}
     <ul class="tag_box inline">
