@@ -4,6 +4,25 @@ var margin = {top: 20, right: 40, bottom: 30, left: 20},
     height = 500 - margin.top - margin.bottom,
     barWidth = Math.floor(width/18) - 1 // 18 age range and 1px for space among bars;
 
+var svg = d3.select(".d3-container").append("svg")
+
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+// sliding container (todo: understand)
+var birthyears = svg.append("g")
+
+    .attr("class","birthyear"); // check again here, apparently an typo in source (plural name)
+
+// A label for the starting year
+var title = svg.append("text")
+    .attr("class", "title")
+    .attr("dy", ".71em")
+    .text(1982);
+
+
 var x = d3.scale.linear()
     .range([barWidth/2, width - barWidth/2]);
 
@@ -122,18 +141,3 @@ d3.csv("/assets/d3-posts/salerno-population/salerno_pop.csv", function(error, da
     }
 });
 
-var svg = d3.select(".d3-container").append("svg")
-    .attr("width", width + margin.left + margin.right)
-    .attr("height", height + margin.top + margin.bottom)
-    .append("g")
-    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
-// sliding container (todo: understand)
-var birthyears = svg.append("g")
-
-    .attr("class","birthyear"); // check again here, apparently an typo in source (plural name)
-
-// A label for the starting year
-var title = svg.append("text")
-    .attr("class", "title")
-    .attr("dy", ".71em")
-    .text(1982);
