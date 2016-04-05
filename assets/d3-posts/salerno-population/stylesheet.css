@@ -39,3 +39,17 @@ rect {
 rect:first-child {
     fill: #1f77b4;
 }
+
+.svg-btn{
+    fill: #466EB4;
+    fill-opacity: .1;
+    stroke: steelblue;
+    stroke-opacity: .2;
+}
+
+.svg-btn-text{
+    text-anchor: middle;
+    fill: #ffffff;
+    stroke: none;
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+}

@@ -14,10 +14,15 @@ var svg = d3.select(".d3-container").append("svg")
 var birthyears = svg.append("g")
     .attr("class","birthyear"); // check again here, apparently an typo in source (plural name)
 
+var titleBar = svg.append("g");
+
 // A label for the starting year
-var title = svg.append("text")
+var title = titleBar.append("text")
     .attr("class", "title")
-    .attr("dy", ".71em");
+    .attr("dy", ".71em")
+    .attr("x", width - 180);
+
+addButton(titleBar);
 
 var x = d3.scale.linear()
     .range([ 0, width ]);
@@ -30,6 +35,11 @@ var yAxis = d3.svg.axis() // NB: the axis has not been rendered yet, just define
     .orient("right")
     .tickSize(-width) // this should render a tick as large as the svg (the white horizontal grid)
     .tickFormat(function(d){return Math.round(d/100)*100;}); // todo is it rendered at right level?
+
+
+var years, year,
+    animate,
+    yearCounter= 0;
 
 // here comes the Magic
 d3.csv("/assets/d3-posts/salerno-population/salerno_pop_senza_fasce.csv", function(error, data){
@@ -44,7 +54,7 @@ d3.csv("/assets/d3-posts/salerno-population/salerno_pop_senza_fasce.csv", functi
     // find min and max to set the domains
     var age1 = d3.max(data,function(d){return d.age;}),
         year0 = d3.min(data, function(d){return d.year}),
-        year1 = d3.max(data, function(d){return d.year}),
+        year1 = d3.max(data, function(d){return d.year});
         year = year0; //todo find out where / why use
 
     setTitle(year0);
@@ -90,72 +100,149 @@ d3.csv("/assets/d3-posts/salerno-population/salerno_pop_senza_fasce.csv", functi
         .attr("width", barWidth)
         .attr("y", y)
         .attr("height", function(value) { return height - y(value); });
-//debugger;
- });
-
-
-function setTitle(year){
-    title.text(year);
-}
-
- /*
-====================
-
-
-
-
-
-
-
-
-
-
-
-
-    // labels for birthyear
-    birthyear.append("text")
-        .attr("y", height - 4 )
-        .text(function(birthyear){ return birthyear; })
 
     // labels for age
     svg.selectAll(".age")
-        .data(d3.range(0, age1 + 1, 5 ))
+        .data(d3.range(0, age1, 5 ))
         .enter().append("text")
-        .attr("x", function(d) { return x(year - d); })
+        .attr("x", function(d) { return x(d); })
         .attr("y", height + 4)
         .attr("dy", ".71em")
         .text(function(d) { return d; });
-
-    // Allow the arrow keys to change the displayed year.
-    window.focus();
-    d3.select(window).on("keydown", function() {
-        switch (d3.event.keyCode) {
-            case 37: year = Math.max(year0, year - 5); break;
-            case 39: year = Math.min(year1, year + 5); break;
-        }
-        update();
-    });
 
 
     function update() {
         if (!(year in data)) return;
         title.text(year);
 
-        birthyears.transition()
-            .duration(750)
-            .attr("transform", "translate(" + (x(year1) - x(year)) + ",0)");
-
         birthyear.selectAll("rect")
-            .data(function (birthyear) {
-                return data[year][birthyear] || [0, 0];
-            })
+            .data(function(d) { return data[year][d] || [0,0]; })
             .transition()
-            .duration(750)
+            .duration(500)
+            .ease("linear")
+            .attr("x", 0)
+            .attr("width", barWidth)
             .attr("y", y)
-            .attr("height", function (value) {
-                return height - y(value);
-            });
+            .attr("height", function(value) { return height - y(value); });
     }
 
 
-*/
+
+    years = d3.range(year0, year1+1);
+    animate = update;
+    //var i = 0;
+    //var timer = setInterval(function(){
+    //    year = years[i++];
+    //    update();
+    //    console.log(year);
+    //    if (i == years.length){
+    //        clearInterval(timer);
+    //        i = 0;
+    //    }
+    //
+    //} ,1000)
+
+ });
+
+
+
+function setTitle(year){
+    title.text(year);
+}
+
+
+var interval;
+
+function play(){
+    interval = setInterval(function(){
+        year = years[yearCounter++];
+        animate();
+        if (yearCounter == years.length){
+            clearInterval(interval);
+            //yearCounter = 0;
+            //year = years[0];
+            //console.log(year);
+            //setTitle(year);
+            //animate();
+        }
+    },1000)
+}
+
+function pause(){
+    clearInterval(interval);
+}
+
+
+
+function addButton(container){
+    var c = container;
+    var h = 30,
+        w = 60,
+        x = width - 90,
+        y = 60;
+
+    c.append("rect")
+        .attr("x", x)
+        .attr("y", y)
+        .attr("height", h)
+        .attr("width", w)
+        .attr("ry", h/10)
+        .attr("class","svg-btn");
+
+    var symbolGroup = c.append("g");
+
+    var playSymbol = function () {
+        symbolGroup.selectAll("*").remove();
+        symbolGroup.append("path")
+            .attr("d", "M0 0 L 10 10 L 0 20 z")
+            .attr("transform", "translate(" + (x+26) + "," + (y+5) + ")scale(.9)")
+            .style("fill", "red");
+    };
+
+    var pauseSymbol = function(){
+        symbolGroup.selectAll("*").remove();
+        symbolGroup.append("rect")
+            .attr("x", x + w/2 - 7)
+            .attr("y", y + h/2 - 7)
+            .attr("height", 15)
+            .attr("width", 5)
+            .style("fill", "orange")
+            .style("opacity", 1)
+
+        symbolGroup.append("rect")
+            .attr("x", x + w/2 - 0)
+            .attr("y", y + h/2 - 7)
+            .attr("height", 15)
+            .attr("width", 5)
+            .style("fill", "orange")
+            .style("opacity",1)
+
+    };
+
+    playSymbol();
+
+    c.append("rect")  // transparent overlay to catch mouse events
+        .attr("id","myButton")
+        .attr("width", w + "px")
+        .attr("height", h + "px")
+        .style("opacity", 0)
+        .style("pointer-events", "all")
+        .attr("x", x)
+        .attr("y", y)
+        .attr("ry", h/2)
+        .on("click", playButton);
+
+    function playButton(){
+        pauseSymbol();
+        d3.select(this).on("click", pauseButton);
+        play();
+    }
+
+    function pauseButton(){
+        playSymbol();
+        d3.select(this).on("click", playButton);
+        pause();
+    }
+
+}
+
