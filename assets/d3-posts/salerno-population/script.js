@@ -130,49 +130,15 @@ d3.csv("/assets/d3-posts/salerno-population/salerno_pop_senza_fasce.csv", functi
 
     years = d3.range(year0, year1+1);
     animate = update;
-    //var i = 0;
-    //var timer = setInterval(function(){
-    //    year = years[i++];
-    //    update();
-    //    console.log(year);
-    //    if (i == years.length){
-    //        clearInterval(timer);
-    //        i = 0;
-    //    }
-    //
-    //} ,1000)
 
  });
-
 
 
 function setTitle(year){
     title.text(year);
 }
 
-
 var interval;
-
-function play(){
-    interval = setInterval(function(){
-        year = years[yearCounter++];
-        animate();
-        if (yearCounter == years.length){
-            clearInterval(interval);
-            //yearCounter = 0;
-            //year = years[0];
-            //console.log(year);
-            //setTitle(year);
-            //animate();
-        }
-    },1000)
-}
-
-function pause(){
-    clearInterval(interval);
-}
-
-
 
 function addButton(container){
     var c = container;
@@ -235,13 +201,29 @@ function addButton(container){
     function playButton(){
         pauseSymbol();
         d3.select(this).on("click", pauseButton);
-        play();
+
+        interval = setInterval(function(){
+            year = years[yearCounter++];
+            animate();
+            if (yearCounter == years.length){
+                clearInterval(interval);
+                setTimeout(function(){
+                    yearCounter = 0;
+                    year = years[0];
+                    console.log(year);
+                    setTitle(year);
+                    animate();
+                    pauseButton();
+                },2000)
+            }
+        },1000)
+
     }
 
     function pauseButton(){
         playSymbol();
         d3.select(this).on("click", playButton);
-        pause();
+        clearInterval(interval);
     }
 
 }
