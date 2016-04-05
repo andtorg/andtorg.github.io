@@ -1,3 +1,19 @@
+var it_ITA = {
+    "decimal": ",",
+    "thousands": ".",
+    "grouping": [3],
+    "currency": ["$", ""],
+    "dateTime": "%a %b %e %X %Y",
+    "date": "%m/%d/%Y",
+    "time": "%H:%M:%S",
+    "periods": ["AM", "PM"],
+    "days": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    "shortDays": ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"],
+    "months": ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+    "shortMonths": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+}
+
+var localeFormatter = d3.locale(it_ITA);
 
 var margin = {top: 20, right: 40, bottom: 30, left: 20},
     width = 960 - margin.left - margin.right,
@@ -101,6 +117,17 @@ d3.csv("/assets/d3-posts/salerno-population/salerno_pop_senza_fasce.csv", functi
         .attr("y", y)
         .attr("height", function(value) { return height - y(value); });
 
+  svg.selectAll(".population")
+        .data([d3.values(data[year]).reduce(function(a,b){return a.concat(b)}).reduce(function(a,b){return a + b}, 0)])
+        .enter()
+        //debugger;
+        .append("text")
+        .attr("x", width/2 - 40)
+        //.attr("width", barWidth)
+        .attr("y", height/2 + 60)
+        .attr("class","population")
+        .text(function(d){return  localeFormatter.numberFormat(",d")(d);});
+//debugger;
     // labels for age
     svg.selectAll(".age")
         .data(d3.range(0, age1, 5 ))
@@ -108,7 +135,7 @@ d3.csv("/assets/d3-posts/salerno-population/salerno_pop_senza_fasce.csv", functi
         .attr("x", function(d) { return x(d); })
         .attr("y", height + 4)
         .attr("dy", ".71em")
-        .text(function(d) { return d; });
+        .text(function(d) { return d ; });
 
 
     function update() {
@@ -124,9 +151,11 @@ d3.csv("/assets/d3-posts/salerno-population/salerno_pop_senza_fasce.csv", functi
             .attr("width", barWidth)
             .attr("y", y)
             .attr("height", function(value) { return height - y(value); });
+
+        svg.selectAll(".population")
+            .data([d3.values(data[year]).reduce(function(a,b){return a.concat(b)}).reduce(function(a,b){return a + b}, 0)])
+            .text(function(d){return  localeFormatter.numberFormat(",d")(d);});
     }
-
-
 
     years = d3.range(year0, year1+1);
     animate = update;

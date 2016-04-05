@@ -53,3 +53,9 @@ rect:first-child {
     stroke: none;
     font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
 }
+
+text.population{
+    font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
+    font-size: 40px;
+    fill: black;
+}
