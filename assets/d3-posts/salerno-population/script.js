@@ -200,7 +200,7 @@ function addButton(container){
 
     function playButton(){
         pauseSymbol();
-        d3.select(this).on("click", pauseButton);
+        d3.select("#myButton").on("click", pauseButton);
 
         interval = setInterval(function(){
             year = years[yearCounter++];
@@ -210,10 +210,11 @@ function addButton(container){
                 setTimeout(function(){
                     yearCounter = 0;
                     year = years[0];
-                    console.log(year);
                     setTitle(year);
+                    //debugger;
                     animate();
-                    pauseButton();
+                    playSymbol()
+                    d3.select("#myButton").on("click", playButton);
                 },2000)
             }
         },1000)
@@ -222,7 +223,7 @@ function addButton(container){
 
     function pauseButton(){
         playSymbol();
-        d3.select(this).on("click", playButton);
+        d3.select("#myButton").on("click", playButton);
         clearInterval(interval);
     }
 
