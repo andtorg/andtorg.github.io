@@ -22,7 +22,7 @@ In effetti questa è una rappresentazione alternativa rispetto alla nota [pirami
 
 Una nota sui dati: bravo Istat, ma non bravissimo. Il sito prima citato consente una consultazione non complicata, ma manca di funzionalità drag & drop
 e nessun webservice, anche se [altrove](http://www.istat.it/it/strumenti/web-service) è possibile, previo accreditamento e _ip fisso_(!), 
-che quindi esclude la quasi totalità dell'utenza domestica che normalmente è dotata di ip dinamico. Vvabbè ma la sera avete sky e premium: 
+che quindi esclude la quasi totalità dell'utenza domestica che normalmente è dotata di ip dinamico. Vabbè ma la sera avete sky e premium: 
 che dovete farvene dei numeri? Tuttavia ci sono un bel po' di informazioni: è interessante, ad esempio, anche il bilancio demografico, che oltre 
 ai numeri secchi per maschi/femmine, indica anche il modo con cui essi si modificano: quanti nati, quanti morti, chi se n'è andato, chi è venuto, etc. 
 Aspetti importanti anche alla luce delle dinamiche di immigrazione, di bisogni connessi ad una popolazione che invecchia (es: arrivo
