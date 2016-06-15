@@ -37,7 +37,7 @@ Being an open-source project, with a vibrant community and a great deal of wides
 at runtime, as this one. 
 
 Pending the simplified [marketplace](http://www.pentaho.com/marketplace/) installation, the plugin can be built from source or downloaded directly
-from [github](https://github.com/andtorg/sdmx-kettle) and copied to a local distribution of kettle right into /step folder.
+from [github](https://github.com/andtorg/sdmx-kettle) and copied to a local distribution of kettle right into plugins/steps folder.
  
 The plugin is actually a wrapper around a cool open-source java [library](https://github.com/amattioc/SDMX) that greatly simplifies a lot of
 tasks dealing with SDMX data: getting the available datasets (Dataflows), browsing the dimensions, retrieving time series, and so on. 
